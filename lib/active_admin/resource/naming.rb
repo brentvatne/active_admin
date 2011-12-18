@@ -5,7 +5,18 @@ module ActiveAdmin
       def resource_name
         @resource_name ||= @options[:as]
         @resource_name ||= singular_human_name
-        @resource_name ||= resource_class.name.gsub('::',' ')
+        @resource_name ||= safe_resource_name
+      end
+
+      def translated_resource_name
+        @resource_name ||= @options[:as]
+        @resource_name ||= singular_human_name
+        @resource_name ||= safe_resource_name
+      end
+
+      def safe_resource_name
+        # @safe_resource_name ||= @options[:as]
+        @safe_resource_name ||= resource.name.gsub('::',' ')
       end
 
       # Returns the plural version of this resource such as "Bank Accounts"
@@ -20,13 +31,17 @@ module ActiveAdmin
         camelized_resource_name
       end
 
+      def plural_safe_resource_name
+        safe_resource_name.pluralize
+      end
+
       # A camelized safe representation for this resource
       def camelized_resource_name
-        resource_name.titleize.gsub(' ', '')
+        safe_resource_name.titleize.gsub(' ', '')
       end
 
       def plural_camelized_resource_name
-        plural_resource_name.titleize.gsub(' ', '')
+        plural_safe_resource_name.titleize.gsub(' ', '')
       end
 
       # An underscored safe representation internally for this resource

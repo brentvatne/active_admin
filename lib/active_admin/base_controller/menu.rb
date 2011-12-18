@@ -22,7 +22,7 @@ module ActiveAdmin
         else
           [active_admin_config.parent_menu_item_name, active_admin_config.menu_item_name].compact.join("/")
         end
-      end        
+      end
 
     end
   end

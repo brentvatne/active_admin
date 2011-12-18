@@ -31,6 +31,14 @@ module ActiveAdmin
     include Resource::Menu
     include Resource::Naming
 
+    def safe_resource_name
+      name
+    end
+
+    def plural_safe_resource_name
+      name
+    end
+
     # plural_resource_name is singular
     def plural_resource_name
       name
