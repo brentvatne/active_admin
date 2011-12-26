@@ -3,8 +3,7 @@ module ActiveAdmin
     module TitleHelper
 
       def title(_title)
-        @page_title = "HI"
-        # @page_title = _title
+        @page_title = _title
       end
 
     end
